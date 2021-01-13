@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Palindrome</title>
+</head>
+
+<body class="container-fluid">
+  <div id="fieldset">
+    <fieldset>
+      <legend class="display-3 font-weight-light text-white"> Palindrome </legend>
+      <hr class="my-4">
+      <div id="input1"><input type="text" id="palindrome" placeholder="écrire ici votre palindrome" maxlength="200"
+          size="100"></div>
+      <div id="bouton"><button id="verification" onclick=onClickDo() class="col-2 btn btn btn-light">Est-ce un
+          palindrome ?</button></div>
+    </fieldset>
+  </div>
+  <div id="display" class="alert-dark h3" style="justify-content:center;"></div>
+  <script>
+    /*  Auteur  : Katell CORMIER
+    Date créat.: 03/01/2019
+    Version JS : ES2018
+    Description : Ce programme vérifie si l'utilisateur a rentré ou non un palindrome dans la zone prévue à cet effet
+    Et lui indique s'il s'agit bien d'un palindrome ou au contraire, si ce n'en est pas un.
+    */
+    function mirror(chaine) {
+      // fonction qui inverse une chaine de caractère
+      let reverse = ""
+      for (let index = chaine.length - 1; index >= 0; index--) {
+        reverse += chaine[index];
+      } return reverse;
+    }
+    function noAccents(chaine) {
+      // enlève les accents
+      chaine = chaine.replace((/[àáâãäå]/g), "a");
+      chaine = chaine.replace((/æ/g), "ae");
+      chaine = chaine.replace((/ç/g), "c");
+      chaine = chaine.replace((/[èéêë]/g), "e");
+      chaine = chaine.replace((/[ìíîï]/g), "i");
+      chaine = chaine.replace((/ñ/g), "n");
+      chaine = chaine.replace((/[òóôõö]/g), "o");
+      chaine = chaine.replace((/œ/g), "oe");
+      chaine = chaine.replace((/[ùúûü]/g), "u");
+      chaine = chaine.replace((/[ýÿ]/g), "y");
+      return chaine;
+    }
+    function onClickDo() {
+      let success = document.getElementById("succes")
+      let impossible = document.getElementById("erreur")
+      // fonction principale (main), executée lorsque le bouton "Est-ce un palindrome ?" est cliqué
+      // récupération du champ rempli par l'utilisateur par son ID et de son contenu par .value
+      let palindrome = document.getElementById("palindrome").value
+      //variable result originale pour l'affichage final du résultat
+      let result = document.getElementById("palindrome").value
+      // extraction des espaces avec \s pour "space" et g pour "global", donc tous les espaces
+      // et "" pour les remplacer par une chaine de caractère vide
+      palindrome = palindrome.replace(/\s+/g, "");
+      // convertir toutes les majuscules en minuscules 
+      palindrome = palindrome.toLowerCase();
+      // enlever les accents
+      palindrome = noAccents(palindrome)
+      // enlever les caractères spéciaux
+      palindrome = palindrome.replace((/[/:;,!'?()]/g), "");
+      // renverser la chaine 
+      palindrome = mirror(palindrome)
+      // verification que la chaine modifiée est l'équivalent de son inverse 
+      if (mirror(palindrome) == palindrome) {
+        display.innerHTML = result + " est bien un palindrome"
+      } else { display.innerHTML = result + " n'est pas un palindrome" }
+    }
+  </script>
+</body>
+
+</html>

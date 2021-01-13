@@ -1,0 +1,27 @@
+
+html, head, body{
+    background-color: rgb(43, 44, 48);
+}
+.my-4{
+    background-color: rgb(255, 255, 255);
+}
+#fieldset{
+    margin-top: 50px;
+    display: flex;
+    justify-content:center;
+    background-color: rgb(43, 44, 48);
+}
+#input1{
+    font-size: 20px;
+}
+#bouton{
+    display: flex;
+    justify-content:center;
+    margin-top: 20px;
+}
+#display{
+    font-size: 30px;
+    margin-top: 50px;
+    display: flex;
+    justify-content:center;
+}
